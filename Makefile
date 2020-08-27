@@ -8,9 +8,14 @@ THISDIR = $(shell pwd)
 
 all: bin_download src_download
 	$(MAKE) -C $(BIN_NAME) ARCH=mips_24kc LDFLAGS=-static CC=$(CONFIG_CROSS_COMPILER_ROOT)/bin/mipsel-linux-uclibc-gcc TARGET=generic -j
+	$(CONFIG_CROSS_COMPILER_ROOT)/bin/mipsel-linux-uclibc-strip $(BIN_NAME)/$(BIN_NAME)
+	upx --best --lzma $(BIN_NAME)/$(BIN_NAME)
 
 bin_download:
-	git clone --depth=1 $(BIN_URL)
+	( if [ ! -d $(SRC_NAME) ];then \
+		git clone --depth=1 $(BIN_URL); \
+	fi )
+	
 
 src_download:
 	( if [ ! -f $(SRC_NAME) ]; then \
