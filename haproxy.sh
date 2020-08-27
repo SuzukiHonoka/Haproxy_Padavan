@@ -20,6 +20,7 @@ $BIN_PATH -f $CONF_PATH -p /run/haproxy.pid -S /run/haproxy-master.sock &> /dev/
 logger -t $SRC_NAME "Started."
 else
 logger -t $SRC_NAME "CONF_PATH invalid."
+fi
 }
 
 func_stop(){
@@ -37,5 +38,4 @@ case $ARG1 in
   		;;
   	* )
   		echo "Usage: start [CONF_PATH] / stop"
-
 esac
