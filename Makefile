@@ -12,7 +12,7 @@ all: bin_download src_download
 	upx --best --lzma $(BIN_NAME)/$(BIN_NAME)
 
 bin_download:
-	( if [ ! -d $(SRC_NAME) ];then \
+	( if [ ! -d $(BIN_NAME) ];then \
 		git clone --depth=1 $(BIN_URL); \
 	fi )
 	
