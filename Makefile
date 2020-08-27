@@ -1,13 +1,13 @@
 BIN_NAME=haproxy
 SRC_NAME=$(BIN_NAME).sh
 BIN_URL=https://github.com/haproxy/haproxy
-SRC_URL=https://raw.githubusercontent.com/SuzukiHonoka/Haproxy_Padavan/master/$(SRC_NAME).sh
+SRC_URL=https://raw.githubusercontent.com/SuzukiHonoka/Haproxy_Padavan/master/$(SRC_NAME)
 BIN_PATH=/usr/bin
 
 THISDIR = $(shell pwd)
 
-all: clean bin_download src_download
-	$(MAKE) -C $(BIN_NAME) ARCH=mips_24kc LDFLAGS=-static CC=$(CONFIG_CROSS_COMPILER_ROOT)/bin/mipsel-linux-uclibc-gcc TARGET=generic
+all: bin_download src_download
+	$(MAKE) -C $(BIN_NAME) ARCH=mips_24kc LDFLAGS=-static CC=$(CONFIG_CROSS_COMPILER_ROOT)/bin/mipsel-linux-uclibc-gcc TARGET=generic -j
 
 bin_download:
 	git clone --depth=1 $(BIN_URL)
